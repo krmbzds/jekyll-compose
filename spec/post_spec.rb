@@ -6,7 +6,7 @@ RSpec.describe(Jekyll::Commands::Post) do
   let(:posts_dir) { Pathname.new source_dir("_posts") }
   let(:datestamp) { Time.now.strftime(Jekyll::Compose::DEFAULT_DATESTAMP_FORMAT) }
   let(:timestamp) { Time.now.strftime(Jekyll::Compose::DEFAULT_TIMESTAMP_FORMAT) }
-  let(:filename) { "#{datestamp}-a-test-post.md" }
+  let(:filename) { "#{datestamp}-a-test-post.adoc" }
   let(:path) { posts_dir.join(filename) }
 
   before(:all) do
@@ -30,7 +30,7 @@ RSpec.describe(Jekyll::Commands::Post) do
   end
 
   it "creates a post with a specified date" do
-    path = posts_dir.join "2012-03-04-a-test-post.md"
+    path = posts_dir.join "2012-03-04-a-test-post.adoc"
     expect(path).not_to exist
     capture_stdout { described_class.process(args, "date" => "2012-3-4") }
     expect(path).to exist
@@ -68,7 +68,7 @@ RSpec.describe(Jekyll::Commands::Post) do
 
   context "when the post already exists" do
     let(:name) { "An existing post" }
-    let(:filename) { "#{datestamp}-an-existing-post.md" }
+    let(:filename) { "#{datestamp}-an-existing-post.adoc" }
 
     before(:each) do
       FileUtils.touch path

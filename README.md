@@ -82,47 +82,47 @@ Create your new draft using:
 Rename your draft using:
 
 ```sh
-$ bundle exec jekyll rename _drafts/my-new-draft.md "My Renamed Draft"
+$ bundle exec jekyll rename _drafts/my-new-draft.adoc "My Renamed Draft"
 ```
 
 ```sh
 # or rename it back
-$ bundle exec jekyll rename _drafts/my-renamed-draft.md "My new draft"
+$ bundle exec jekyll rename _drafts/my-renamed-draft.adoc "My new draft"
 ```
 
 Publish your draft using:
 
 ```sh
-    $ bundle exec jekyll publish _drafts/my-new-draft.md
+    $ bundle exec jekyll publish _drafts/my-new-draft.adoc
 ```
 
 ```sh
     # or specify a specific date on which to publish it
-    $ bundle exec jekyll publish _drafts/my-new-draft.md --date 2014-01-24
+    $ bundle exec jekyll publish _drafts/my-new-draft.adoc --date 2014-01-24
     # or specify a custom format for the date attribute in the yaml front matter
-    $ bundle exec jekyll publish _drafts/my-new-draft.md --timestamp-format "%Y-%m-%d %H:%M:%S %z"
+    $ bundle exec jekyll publish _drafts/my-new-draft.adoc --timestamp-format "%Y-%m-%d %H:%M:%S %z"
 ```
 
 Rename your post using:
 
 ```sh
-$ bundle exec jekyll rename _posts/2014-01-24-my-new-draft.md "My New Post"
+$ bundle exec jekyll rename _posts/2014-01-24-my-new-draft.adoc "My New Post"
 ```
 
 ```sh
 # or specify a specific date
-$ bundle exec jekyll rename _posts/2014-01-24-my-new-post.md "My Old Post" --date "2012-03-04"
+$ bundle exec jekyll rename _posts/2014-01-24-my-new-post.adoc "My Old Post" --date "2012-03-04"
 ```
 
 ```sh
 # or specify the current date
-$ bundle exec jekyll rename _posts/2012-03-04-my-old-post.md "My New Post" --now
+$ bundle exec jekyll rename _posts/2012-03-04-my-old-post.adoc "My New Post" --now
 ```
 
 Unpublish your post using:
 
 ```sh
-    $ bundle exec jekyll unpublish _posts/2014-01-24-my-new-draft.md
+    $ bundle exec jekyll unpublish _posts/2014-01-24-my-new-draft.adoc
 ```
 
 Create your new file in a collection using:

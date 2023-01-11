@@ -3,7 +3,7 @@
 RSpec.describe(Jekyll::Commands::Publish) do
   let(:drafts_dir) { Pathname.new source_dir("_drafts") }
   let(:posts_dir)  { Pathname.new source_dir("_posts") }
-  let(:draft_to_publish) { "a-test-post.md" }
+  let(:draft_to_publish) { "a-test-post.adoc" }
   let(:timestamp_format) { Jekyll::Compose::DEFAULT_TIMESTAMP_FORMAT }
   let(:date) { Time.now }
   let(:timestamp) { date.strftime(timestamp_format) }
@@ -74,7 +74,7 @@ RSpec.describe(Jekyll::Commands::Publish) do
   end
 
   it "publishes a draft on the specified date" do
-    path = posts_dir.join "2012-03-04-a-test-post.md"
+    path = posts_dir.join "2012-03-04-a-test-post.adoc"
     capture_stdout { described_class.process(args, "date" => "2012-3-4") }
     expect(path).to exist
     expect(draft_path).not_to exist

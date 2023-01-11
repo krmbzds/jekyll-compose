@@ -8,8 +8,8 @@ RSpec.describe(Jekyll::Commands::Rename) do
     let(:drafts_dir) { Pathname.new source_dir("_drafts") }
     let(:old_name) { "Old Draft" }
     let(:new_name) { "New Draft" }
-    let(:old_filename) { "old-draft.md" }
-    let(:new_filename) { "new-draft.md" }
+    let(:old_filename) { "old-draft.adoc" }
+    let(:new_filename) { "new-draft.adoc" }
     let(:old_path) { drafts_dir.join(old_filename) }
     let(:new_path) { drafts_dir.join(new_filename) }
     let(:old_arg) { File.join("_drafts", old_filename) }
@@ -157,8 +157,8 @@ RSpec.describe(Jekyll::Commands::Rename) do
     let(:posts_dir) { Pathname.new source_dir("_posts") }
     let(:old_name) { "Old Post" }
     let(:new_name) { "New Post" }
-    let(:old_basename) { "old-post.md" }
-    let(:new_basename) { "new-post.md" }
+    let(:old_basename) { "old-post.adoc" }
+    let(:new_basename) { "new-post.adoc" }
     let(:old_filename) { "#{datestamp}-#{old_basename}" }
     let(:new_filename) { "#{datestamp}-#{new_basename}" }
     let(:old_path) { posts_dir.join(old_filename) }

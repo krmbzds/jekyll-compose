@@ -3,7 +3,7 @@
 RSpec.describe(Jekyll::Commands::Page) do
   let(:name) { "A test page" }
   let(:args) { [name] }
-  let(:filename) { "a-test-page.md" }
+  let(:filename) { "a-test-page.adoc" }
   let(:path) { Pathname.new(source_dir).join(filename) }
 
   before(:all) do
@@ -46,7 +46,7 @@ RSpec.describe(Jekyll::Commands::Page) do
 
   context "when the page already exists" do
     let(:name) { "An existing page" }
-    let(:filename) { "an-existing-page.md" }
+    let(:filename) { "an-existing-page.adoc" }
 
     before(:each) do
       FileUtils.touch path

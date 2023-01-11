@@ -4,7 +4,7 @@ RSpec.describe(Jekyll::Commands::Draft) do
   let(:name) { "A test post" }
   let(:args) { [name] }
   let(:drafts_dir) { Pathname.new source_dir("_drafts") }
-  let(:path) { drafts_dir.join("a-test-post.md") }
+  let(:path) { drafts_dir.join("a-test-post.adoc") }
 
   before(:all) do
     FileUtils.mkdir_p source_dir unless File.directory? source_dir
@@ -28,7 +28,7 @@ RSpec.describe(Jekyll::Commands::Draft) do
 
   it "writes a helpful success message" do
     output = capture_stdout { described_class.process(args) }
-    expect(output).to include("New draft created at #{"_drafts/a-test-post.md".cyan}")
+    expect(output).to include("New draft created at #{"_drafts/a-test-post.adoc".cyan}")
   end
 
   it "errors with no arguments" do
@@ -57,7 +57,7 @@ RSpec.describe(Jekyll::Commands::Draft) do
 
   context "when the draft already exists" do
     let(:name) { "An existing draft" }
-    let(:path) { drafts_dir.join("an-existing-draft.md") }
+    let(:path) { drafts_dir.join("an-existing-draft.adoc") }
 
     before(:each) do
       FileUtils.touch path
@@ -65,13 +65,13 @@ RSpec.describe(Jekyll::Commands::Draft) do
 
     it "displays a warning and returns" do
       output = capture_stdout { described_class.process(args) }
-      expect(output).to include("A draft already exists at _drafts/an-existing-draft.md")
+      expect(output).to include("A draft already exists at _drafts/an-existing-draft.adoc")
       expect(File.read(path)).to_not match("layout: post")
     end
 
     it "overwrites if --force is given" do
       output = capture_stdout { described_class.process(args, "force" => true) }
-      expect(output).to_not include("A draft already exists at _drafts/an-existing-draft.md")
+      expect(output).to_not include("A draft already exists at _drafts/an-existing-draft.adoc")
       expect(File.read(path)).to match("layout: post")
     end
   end
@@ -158,7 +158,7 @@ RSpec.describe(Jekyll::Commands::Draft) do
 
       it "should write a helpful message when successful" do
         output = capture_stdout { described_class.process(args) }
-        generated_path = File.join("site", collections_dir, "_drafts", "a-test-post.md").cyan
+        generated_path = File.join("site", collections_dir, "_drafts", "a-test-post.adoc").cyan
         expect(output).to include("New draft created at #{generated_path}")
       end
     end

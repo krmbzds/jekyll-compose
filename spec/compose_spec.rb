@@ -15,7 +15,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
   context "posts" do
     let(:name) { "A test post" }
     let(:args) { [name] }
-    let(:filename) { "#{datestamp}-a-test-post.md" }
+    let(:filename) { "#{datestamp}-a-test-post.adoc" }
     let(:path) { posts_dir.join(filename) }
 
     before(:each) do
@@ -46,7 +46,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
     end
 
     it "creates a post with a specified date" do
-      path = posts_dir.join "2012-03-04-a-test-post.md"
+      path = posts_dir.join "2012-03-04-a-test-post.adoc"
       expect(path).not_to exist
       capture_stdout { described_class.process(args, "date" => "2012-3-4") }
       expect(path).to exist
@@ -84,7 +84,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
     context "when the post already exists" do
       let(:name) { "An existing post" }
-      let(:filename) { "#{datestamp}-an-existing-post.md" }
+      let(:filename) { "#{datestamp}-an-existing-post.adoc" }
 
       before(:each) do
         FileUtils.touch path
@@ -205,7 +205,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
     let(:name) { "A test draft" }
     let(:args) { [name] }
     let(:options) { { "draft" => true } }
-    let(:path) { drafts_dir.join("a-test-draft.md") }
+    let(:path) { drafts_dir.join("a-test-draft.adoc") }
 
     before(:each) do
       FileUtils.mkdir_p drafts_dir unless File.directory? drafts_dir
@@ -236,7 +236,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
     it "writes a helpful success message" do
       output = capture_stdout { described_class.process(args, options) }
-      expect(output).to include("New draft created at #{"_drafts/a-test-draft.md".cyan}")
+      expect(output).to include("New draft created at #{"_drafts/a-test-draft.adoc".cyan}")
     end
 
     it "errors with no arguments" do
@@ -271,7 +271,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
     context "when the draft already exists" do
       let(:name) { "An existing draft" }
-      let(:path) { drafts_dir.join("an-existing-draft.md") }
+      let(:path) { drafts_dir.join("an-existing-draft.adoc") }
 
       before(:each) do
         FileUtils.touch path
@@ -279,13 +279,13 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
       it "displays a warning and returns" do
         output = capture_stdout { described_class.process(args, options) }
-        expect(output).to include("A draft already exists at _drafts/an-existing-draft.md")
+        expect(output).to include("A draft already exists at _drafts/an-existing-draft.adoc")
         expect(File.read(path)).to_not match("layout: post")
       end
 
       it "overwrites if --force is given" do
         output = capture_stdout { described_class.process(args, options.merge("force" => true)) }
-        expect(output).to_not include("A draft already exists at _drafts/an-existing-draft.md")
+        expect(output).to_not include("A draft already exists at _drafts/an-existing-draft.adoc")
         expect(File.read(path)).to match("layout: post")
       end
     end
@@ -372,7 +372,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
         it "should write a helpful message when successful" do
           output = capture_stdout { described_class.process(args, options) }
-          generated_path = File.join("site", collections_dir, "_drafts", "a-test-draft.md").cyan
+          generated_path = File.join("site", collections_dir, "_drafts", "a-test-draft.adoc").cyan
           expect(output).to include("New draft created at #{generated_path}")
         end
       end
@@ -392,7 +392,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
     let(:name) { "A test thing" }
     let(:args) { [name] }
     let(:options) { { "collection" => "things" } }
-    let(:path) { things_dir.join("a-test-thing.md") }
+    let(:path) { things_dir.join("a-test-thing.adoc") }
 
     before(:each) do
       FileUtils.mkdir_p things_dir unless File.directory? things_dir
@@ -417,7 +417,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
     it "writes a helpful success message" do
       output = capture_stdout { described_class.process(args, options) }
-      expect(output).to include("New file created at #{"_things/a-test-thing.md".cyan}")
+      expect(output).to include("New file created at #{"_things/a-test-thing.adoc".cyan}")
     end
 
     it "errors with no arguments" do
@@ -452,7 +452,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
     context "when the collection file already exists" do
       let(:name) { "An existing thing" }
-      let(:path) { things_dir.join("an-existing-thing.md") }
+      let(:path) { things_dir.join("an-existing-thing.adoc") }
 
       before(:each) do
         FileUtils.touch path
@@ -460,13 +460,13 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
       it "displays a warning and returns" do
         output = capture_stdout { described_class.process(args, options) }
-        expect(output).to include("A file already exists at _things/an-existing-thing.md")
+        expect(output).to include("A file already exists at _things/an-existing-thing.adoc")
         expect(File.read(path)).to_not match("layout: post")
       end
 
       it "overwrites if --force is given" do
         output = capture_stdout { described_class.process(args, options.merge("force" => true)) }
-        expect(output).to_not include("A file already exists at _things/an-existing-thing.md")
+        expect(output).to_not include("A file already exists at _things/an-existing-thing.adoc")
         expect(File.read(path)).to match("layout: post")
       end
     end
@@ -553,7 +553,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
         it "should write a helpful message when successful" do
           output = capture_stdout { described_class.process(args, options) }
-          generated_path = File.join("site", collections_dir, "_things", "a-test-thing.md").cyan
+          generated_path = File.join("site", collections_dir, "_things", "a-test-thing.adoc").cyan
           expect(output).to include("New file created at #{generated_path}")
         end
       end

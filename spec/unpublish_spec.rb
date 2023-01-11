@@ -3,7 +3,7 @@
 RSpec.describe(Jekyll::Commands::Unpublish) do
   let(:drafts_dir) { Pathname.new(source_dir("_drafts")) }
   let(:posts_dir)  { Pathname.new(source_dir("_posts")) }
-  let(:post_name) { "a-test-post.md" }
+  let(:post_name) { "a-test-post.adoc" }
   let(:timestamp) { Time.now.strftime(Jekyll::Compose::DEFAULT_TIMESTAMP_FORMAT) }
   let(:datestamp) { Time.now.strftime(Jekyll::Compose::DEFAULT_DATESTAMP_FORMAT) }
   let(:post_filename) { "#{datestamp}-#{post_name}" }
@@ -56,7 +56,7 @@ RSpec.describe(Jekyll::Commands::Unpublish) do
   end
 
   it "outputs a warning and returns if no file exists at given path" do
-    weird_path = "_posts/i-forgot-the-date.md"
+    weird_path = "_posts/i-forgot-the-date.adoc"
     output = capture_stdout { described_class.process [weird_path] }
     expect(output).to include("There was no post found at '#{weird_path}'.")
   end

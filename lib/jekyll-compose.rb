@@ -10,7 +10,7 @@ require "jekyll-compose/file_editor"
 
 module Jekyll
   module Compose
-    DEFAULT_TYPE = "md"
+    DEFAULT_TYPE = "adoc"
     DEFAULT_LAYOUT = "post"
     DEFAULT_LAYOUT_PAGE = "page"
     DEFAULT_DATESTAMP_FORMAT = "%Y-%m-%d"

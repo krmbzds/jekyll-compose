@@ -16,7 +16,7 @@ module Jekyll
       def content(custom_front_matter = {})
         front_matter = YAML.dump({
           "layout" => params.layout,
-          "title"  => params.title,
+          "title" => params.title
         }.merge(custom_front_matter))
 
         front_matter + "---\n"

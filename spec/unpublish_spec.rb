@@ -2,7 +2,7 @@
 
 RSpec.describe(Jekyll::Commands::Unpublish) do
   let(:drafts_dir) { Pathname.new(source_dir("_drafts")) }
-  let(:posts_dir)  { Pathname.new(source_dir("_posts")) }
+  let(:posts_dir) { Pathname.new(source_dir("_posts")) }
   let(:post_name) { "a-test-post.adoc" }
   let(:timestamp) { Time.now.strftime(Jekyll::Compose::DEFAULT_TIMESTAMP_FORMAT) }
   let(:datestamp) { Time.now.strftime(Jekyll::Compose::DEFAULT_DATESTAMP_FORMAT) }
@@ -87,7 +87,7 @@ RSpec.describe(Jekyll::Commands::Unpublish) do
   context "when a configuration file exists" do
     let(:config) { source_dir("_config.yml") }
     let(:drafts_dir) { Pathname.new(source_dir("site", "_drafts")) }
-    let(:posts_dir)  { Pathname.new(source_dir("site", "_posts")) }
+    let(:posts_dir) { Pathname.new(source_dir("site", "_posts")) }
     let(:config_data) do
       %(
     source: site
@@ -95,9 +95,7 @@ RSpec.describe(Jekyll::Commands::Unpublish) do
     end
 
     before(:each) do
-      File.open(config, "w") do |f|
-        f.write(config_data)
-      end
+      File.write(config, config_data)
     end
 
     after(:each) do
@@ -115,7 +113,7 @@ RSpec.describe(Jekyll::Commands::Unpublish) do
     context "and collections_dir is set" do
       let(:collections_dir) { "my_collections" }
       let(:drafts_dir) { Pathname.new(source_dir("site", collections_dir, "_drafts")) }
-      let(:posts_dir)  { Pathname.new(source_dir("site", collections_dir, "_posts")) }
+      let(:posts_dir) { Pathname.new(source_dir("site", collections_dir, "_posts")) }
       let(:config_data) do
         %(
       source: site
@@ -141,7 +139,7 @@ RSpec.describe(Jekyll::Commands::Unpublish) do
 
   context "when source option is set" do
     let(:drafts_dir) { Pathname.new(source_dir("site", "_drafts")) }
-    let(:posts_dir)  { Pathname.new(source_dir("site", "_posts")) }
+    let(:posts_dir) { Pathname.new(source_dir("site", "_posts")) }
 
     it "should use source directory set by command line option" do
       expect(post_path).to exist

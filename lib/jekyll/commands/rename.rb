@@ -19,7 +19,7 @@ module Jekyll
           ["force", "-f", "--force", "Overwrite a post if it already exists"],
           ["config", "--config CONFIG_FILE[,CONFIG_FILE2,...]", Array, "Custom configuration file"],
           ["date", "-d DATE", "--date DATE", "Specify the date"],
-          ["now", "--now", "Specify the date as now"],
+          ["now", "--now", "Specify the date as now"]
         ]
       end
 
@@ -49,7 +49,7 @@ module Jekyll
       end
 
       def path
-        File.join(source, current_path).sub(%r!\A/!, "")
+        File.join(source, current_path).delete_prefix("/")
       end
 
       def dirname
@@ -70,10 +70,10 @@ module Jekyll
 
       def date
         @date ||= if options["now"]
-                    Time.now
-                  elsif options["date"]
-                    Date.parse(options["date"])
-                  end
+          Time.now
+        elsif options["date"]
+          Date.parse(options["date"])
+        end
       end
 
       def date_from_filename

@@ -23,7 +23,7 @@ module Jekyll
           ["collection", "-c COLLECTION", "--collection COLLECTION", "Specify the document collection"],
           ["post", "--post", "Create a new post (default)"],
           ["draft", "--draft", "Create a new draft"],
-          ["config", "--config CONFIG_FILE[,CONFIG_FILE2,...]", Array, "Custom configuration file"],
+          ["config", "--config CONFIG_FILE[,CONFIG_FILE2,...]", Array, "Custom configuration file"]
         ]
       end
 
@@ -73,7 +73,7 @@ module Jekyll
 
         def resource_type
           case @collection
-          when "posts"  then "post"
+          when "posts" then "post"
           when "drafts" then "draft"
           else
             "file"
@@ -92,7 +92,7 @@ module Jekyll
           default_front_matter = front_matter_defaults_for(@collection)
           custom_front_matter.merge!(default_front_matter) if default_front_matter.is_a?(Hash)
 
-          super({ "date" => time_stamp }.merge!(custom_front_matter))
+          super({"date" => time_stamp}.merge!(custom_front_matter))
         end
 
         private

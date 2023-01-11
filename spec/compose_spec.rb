@@ -50,7 +50,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
       expect(path).not_to exist
       capture_stdout { described_class.process(args, "date" => "2012-3-4") }
       expect(path).to exist
-      expect(File.read(path)).to match(%r!date: 2012-03-04 00:00 \+0000!)
+      expect(File.read(path)).to match(%r{date: 2012-03-04 00:00 \+0000})
     end
 
     it "creates the post with a specified extension" do
@@ -62,7 +62,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
     it "creates a new post with the specified layout" do
       capture_stdout { described_class.process(args, "layout" => "other-layout") }
-      expect(File.read(path)).to match(%r!layout: other-layout!)
+      expect(File.read(path)).to match(%r{layout: other-layout})
     end
 
     it "should write a helpful message when successful" do
@@ -113,9 +113,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
       end
 
       before(:each) do
-        File.open(config, "w") do |f|
-          f.write(config_data)
-        end
+        File.write(config, config_data)
       end
 
       after(:each) do
@@ -144,8 +142,8 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
         it "creates post with the specified config" do
           capture_stdout { described_class.process(args) }
           post = File.read(path)
-          expect(post).to match(%r!description: my description!)
-          expect(post).to match(%r!category: !)
+          expect(post).to match(%r{description: my description})
+          expect(post).to match(%r{category: })
         end
 
         context "env variable EDITOR is set up" do
@@ -204,7 +202,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
   context "drafts" do
     let(:name) { "A test draft" }
     let(:args) { [name] }
-    let(:options) { { "draft" => true } }
+    let(:options) { {"draft" => true} }
     let(:path) { drafts_dir.join("a-test-draft.adoc") }
 
     before(:each) do
@@ -266,7 +264,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
     it "creates a new draft with the specified layout" do
       capture_stdout { described_class.process(args, options.merge("layout" => "other-layout")) }
-      expect(File.read(path)).to match(%r!layout: other-layout!)
+      expect(File.read(path)).to match(%r{layout: other-layout})
     end
 
     context "when the draft already exists" do
@@ -300,9 +298,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
       end
 
       before(:each) do
-        File.open(config, "w") do |f|
-          f.write(config_data)
-        end
+        File.write(config, config_data)
       end
 
       after(:each) do
@@ -331,8 +327,8 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
         it "creates post with the specified config" do
           capture_stdout { described_class.process(args, options) }
           post = File.read(path)
-          expect(post).to match(%r!description: my description!)
-          expect(post).to match(%r!category: !)
+          expect(post).to match(%r{description: my description})
+          expect(post).to match(%r{category: })
         end
 
         context "env variable EDITOR is set up" do
@@ -391,7 +387,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
   context "collections" do
     let(:name) { "A test thing" }
     let(:args) { [name] }
-    let(:options) { { "collection" => "things" } }
+    let(:options) { {"collection" => "things"} }
     let(:path) { things_dir.join("a-test-thing.adoc") }
 
     before(:each) do
@@ -447,7 +443,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
 
     it "creates a new collection item with the specified layout" do
       capture_stdout { described_class.process(args, options.merge("layout" => "other-layout")) }
-      expect(File.read(path)).to match(%r!layout: other-layout!)
+      expect(File.read(path)).to match(%r{layout: other-layout})
     end
 
     context "when the collection file already exists" do
@@ -481,9 +477,7 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
       end
 
       before(:each) do
-        File.open(config, "w") do |f|
-          f.write(config_data)
-        end
+        File.write(config, config_data)
       end
 
       after(:each) do
@@ -512,8 +506,8 @@ RSpec.describe(Jekyll::Commands::ComposeCommand) do
         it "creates collection item with the specified config" do
           capture_stdout { described_class.process(args, options) }
           post = File.read(path)
-          expect(post).to match(%r!description: my description!)
-          expect(post).to match(%r!category: !)
+          expect(post).to match(%r{description: my description})
+          expect(post).to match(%r{category: })
         end
 
         context "env variable EDITOR is set up" do

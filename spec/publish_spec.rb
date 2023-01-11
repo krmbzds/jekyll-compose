@@ -2,7 +2,7 @@
 
 RSpec.describe(Jekyll::Commands::Publish) do
   let(:drafts_dir) { Pathname.new source_dir("_drafts") }
-  let(:posts_dir)  { Pathname.new source_dir("_posts") }
+  let(:posts_dir) { Pathname.new source_dir("_posts") }
   let(:draft_to_publish) { "a-test-post.adoc" }
   let(:timestamp_format) { Jekyll::Compose::DEFAULT_TIMESTAMP_FORMAT }
   let(:date) { Time.now }
@@ -12,7 +12,7 @@ RSpec.describe(Jekyll::Commands::Publish) do
   let(:args) { ["_drafts/#{draft_to_publish}"] }
 
   let(:draft_path) { drafts_dir.join draft_to_publish }
-  let(:post_path)  { posts_dir.join post_filename }
+  let(:post_path) { posts_dir.join post_filename }
 
   before(:all) do
     FileUtils.mkdir_p source_dir unless File.directory? source_dir
@@ -47,7 +47,7 @@ RSpec.describe(Jekyll::Commands::Publish) do
     it "publishes with a specified date" do
       expect(post_path).not_to exist
       expect(draft_path).to exist
-      capture_stdout { described_class.process(args, "date"=>"2012-3-4") }
+      capture_stdout { described_class.process(args, "date" => "2012-3-4") }
       expect(post_path).to exist
       expect(draft_path).not_to exist
       expect(File.read(post_path)).to include("date: 2012-03-04")
@@ -127,7 +127,7 @@ RSpec.describe(Jekyll::Commands::Publish) do
   context "when a configuration file exists" do
     let(:config) { source_dir("_config.yml") }
     let(:drafts_dir) { Pathname.new source_dir("site", "_drafts") }
-    let(:posts_dir)  { Pathname.new source_dir("site", "_posts") }
+    let(:posts_dir) { Pathname.new source_dir("site", "_posts") }
     let(:config_data) do
       %(
     source: site
@@ -135,9 +135,7 @@ RSpec.describe(Jekyll::Commands::Publish) do
     end
 
     before(:each) do
-      File.open(config, "w") do |f|
-        f.write(config_data)
-      end
+      File.write(config, config_data)
     end
 
     after(:each) do
@@ -155,7 +153,7 @@ RSpec.describe(Jekyll::Commands::Publish) do
 
   context "when source option is set" do
     let(:drafts_dir) { Pathname.new source_dir("site", "_drafts") }
-    let(:posts_dir)  { Pathname.new source_dir("site", "_posts") }
+    let(:posts_dir) { Pathname.new source_dir("site", "_posts") }
 
     it "should use source directory set by command line option" do
       expect(post_path).not_to exist

@@ -8,7 +8,7 @@ module Jekyll
       end
 
       def path
-        File.join(source, args.join(" ")).sub(%r!\A/!, "")
+        File.join(source, args.join(" ")).delete_prefix("/")
       end
     end
   end

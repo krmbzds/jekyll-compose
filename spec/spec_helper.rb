@@ -31,9 +31,8 @@ RSpec.configure do |config|
   ###
   ### Helper methods
   ###
-  TEST_DIR = __dir__
   def test_dir(*files)
-    File.expand_path(File.join(TEST_DIR, *files))
+    File.expand_path(File.join(__dir__, *files))
   end
 
   def source_dir(*files)
@@ -42,9 +41,9 @@ RSpec.configure do |config|
 
   def fixture_site
     Jekyll::Site.new(Jekyll::Utils.deep_merge_hashes(
-                       Jekyll::Configuration::DEFAULTS,
-                       "source" => source_dir, "destination" => test_dir("dest")
-                     ))
+      Jekyll::Configuration::DEFAULTS,
+      "source" => source_dir, "destination" => test_dir("dest")
+    ))
   end
 
   def capture_stdout(level = :debug)

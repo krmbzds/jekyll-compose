@@ -58,7 +58,7 @@ module Jekyll
         end
       rescue Psych::SyntaxError => e
         Jekyll.logger.warn e
-      rescue StandardError => e
+      rescue => e
         Jekyll.logger.warn e
       end
 

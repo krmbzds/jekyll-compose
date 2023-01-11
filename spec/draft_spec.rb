@@ -52,7 +52,7 @@ RSpec.describe(Jekyll::Commands::Draft) do
 
   it "creates a new draft with the specified layout" do
     capture_stdout { described_class.process(args, "layout" => "other-layout") }
-    expect(File.read(path)).to match(%r!layout: other-layout!)
+    expect(File.read(path)).to match(%r{layout: other-layout})
   end
 
   context "when the draft already exists" do
@@ -86,9 +86,7 @@ RSpec.describe(Jekyll::Commands::Draft) do
     end
 
     before(:each) do
-      File.open(config, "w") do |f|
-        f.write(config_data)
-      end
+      File.write(config, config_data)
     end
 
     after(:each) do
@@ -117,8 +115,8 @@ RSpec.describe(Jekyll::Commands::Draft) do
       it "creates post with the specified config" do
         capture_stdout { described_class.process(args) }
         post = File.read(path)
-        expect(post).to match(%r!description: my description!)
-        expect(post).to match(%r!category: !)
+        expect(post).to match(%r{description: my description})
+        expect(post).to match(%r{category: })
       end
 
       context "env variable EDITOR is set up" do

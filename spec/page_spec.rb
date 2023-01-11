@@ -30,7 +30,7 @@ RSpec.describe(Jekyll::Commands::Page) do
 
   it "creates a new page with the specified layout" do
     capture_stdout { described_class.process(args, "layout" => "other-layout") }
-    expect(File.read(path)).to match(%r!layout: other-layout!)
+    expect(File.read(path)).to match(%r{layout: other-layout})
   end
 
   it "should write a helpful message when successful" do
@@ -70,11 +70,9 @@ RSpec.describe(Jekyll::Commands::Page) do
     let(:path) { Pathname.new(source_dir).join("site", filename) }
 
     before(:each) do
-      File.open(config, "w") do |f|
-        f.write(%(
+      File.write(config, %(
 source: site
 ))
-      end
     end
 
     after(:each) do

@@ -21,7 +21,7 @@ module Jekyll
           ["force", "-f", "--force", "Overwrite a post if it already exists"],
           ["date", "-d DATE", "--date DATE", "Specify the post date"],
           ["config", "--config CONFIG_FILE[,CONFIG_FILE2,...]", Array, "Custom configuration file"],
-          ["timestamp_format", "--timestamp-format FORMAT", "Custom timestamp format"],
+          ["timestamp_format", "--timestamp-format FORMAT", "Custom timestamp format"]
         ]
       end
 
@@ -70,7 +70,7 @@ module Jekyll
           default_front_matter = front_matter_defaults_for("posts")
           custom_front_matter.merge!(default_front_matter) if default_front_matter.is_a?(Hash)
 
-          super({ "date" => _time_stamp }.merge(custom_front_matter))
+          super({"date" => _time_stamp}.merge(custom_front_matter))
         end
       end
     end

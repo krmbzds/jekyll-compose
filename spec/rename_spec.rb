@@ -43,11 +43,11 @@ RSpec.describe(Jekyll::Commands::Rename) do
     it "changes the title of the draft" do
       expect(old_path).to exist
       expect(new_path).not_to exist
-      expect(File.read(old_path)).to match(%r!title: Old Draft!)
+      expect(File.read(old_path)).to match(%r{title: Old Draft})
       capture_stdout { described_class.process(args) }
       expect(old_path).not_to exist
       expect(new_path).to exist
-      expect(File.read(new_path)).to match(%r!title: New Draft!)
+      expect(File.read(new_path)).to match(%r{title: New Draft})
     end
 
     it "should write a helpful message when successful" do
@@ -97,9 +97,7 @@ RSpec.describe(Jekyll::Commands::Rename) do
       end
 
       before(:each) do
-        File.open(config, "w") do |f|
-          f.write(config_data)
-        end
+        File.write(config, config_data)
       end
 
       after(:each) do
@@ -194,11 +192,11 @@ RSpec.describe(Jekyll::Commands::Rename) do
     it "changes the title of the post" do
       expect(old_path).to exist
       expect(new_path).not_to exist
-      expect(File.read(old_path)).to match(%r!title: #{old_name}!)
+      expect(File.read(old_path)).to match(%r{title: #{old_name}})
       capture_stdout { described_class.process(args) }
       expect(old_path).not_to exist
       expect(new_path).to exist
-      expect(File.read(new_path)).to match(%r!title: #{new_name}!)
+      expect(File.read(new_path)).to match(%r{title: #{new_name}})
     end
 
     it "should write a helpful message when successful" do
@@ -233,21 +231,21 @@ RSpec.describe(Jekyll::Commands::Rename) do
       it "changes the title of the post" do
         expect(old_path).to exist
         expect(new_path).not_to exist
-        expect(File.read(old_path)).to match(%r!title: #{old_name}!)
+        expect(File.read(old_path)).to match(%r{title: #{old_name}})
         capture_stdout { described_class.process(args, "date" => new_datestamp) }
         expect(old_path).not_to exist
         expect(new_path).to exist
-        expect(File.read(new_path)).to match(%r!title: #{new_name}!)
+        expect(File.read(new_path)).to match(%r{title: #{new_name}})
       end
 
       it "changes the date of the post" do
         expect(old_path).to exist
         expect(new_path).not_to exist
-        expect(File.read(old_path)).to match(%r!title: #{old_name}!)
+        expect(File.read(old_path)).to match(%r{title: #{old_name}})
         capture_stdout { described_class.process(args, "date" => new_datestamp) }
         expect(old_path).not_to exist
         expect(new_path).to exist
-        expect(File.read(new_path)).to match(%r!date: #{new_datestamp}!)
+        expect(File.read(new_path)).to match(%r{date: #{new_datestamp}})
       end
 
       it "should write a helpful message when successful" do
@@ -288,21 +286,21 @@ RSpec.describe(Jekyll::Commands::Rename) do
       it "changes the title of the post" do
         expect(old_path).to exist
         expect(new_path).not_to exist
-        expect(File.read(old_path)).to match(%r!title: #{old_name}!)
+        expect(File.read(old_path)).to match(%r{title: #{old_name}})
         capture_stdout { described_class.process(args, "now" => true) }
         expect(old_path).not_to exist
         expect(new_path).to exist
-        expect(File.read(new_path)).to match(%r!title: #{new_name}!)
+        expect(File.read(new_path)).to match(%r{title: #{new_name}})
       end
 
       it "changes the date of the post" do
         expect(old_path).to exist
         expect(new_path).not_to exist
-        expect(File.read(old_path)).to match(%r!title: #{old_name}!)
+        expect(File.read(old_path)).to match(%r{title: #{old_name}})
         capture_stdout { described_class.process(args, "now" => true) }
         expect(old_path).not_to exist
         expect(new_path).to exist
-        expect(File.read(new_path)).to match(%r!date: #{Regexp.quote(now_timestamp)}!)
+        expect(File.read(new_path)).to match(%r{date: #{Regexp.quote(now_timestamp)}})
       end
 
       it "should write a helpful message when successful" do
@@ -341,9 +339,7 @@ RSpec.describe(Jekyll::Commands::Rename) do
       end
 
       before(:each) do
-        File.open(config, "w") do |f|
-          f.write(config_data)
-        end
+        File.write(config, config_data)
       end
 
       after(:each) do

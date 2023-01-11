@@ -34,7 +34,7 @@ RSpec.describe(Jekyll::Commands::Post) do
     expect(path).not_to exist
     capture_stdout { described_class.process(args, "date" => "2012-3-4") }
     expect(path).to exist
-    expect(File.read(path)).to match(%r!date: 2012-03-04 00:00 \+0000!)
+    expect(File.read(path)).to match(%r{date: 2012-03-04 00:00 \+0000})
   end
 
   it "creates the post with a specified extension" do
@@ -46,7 +46,7 @@ RSpec.describe(Jekyll::Commands::Post) do
 
   it "creates a new post with the specified layout" do
     capture_stdout { described_class.process(args, "layout" => "other-layout") }
-    expect(File.read(path)).to match(%r!layout: other-layout!)
+    expect(File.read(path)).to match(%r{layout: other-layout})
   end
 
   it "should write a helpful message when successful" do
@@ -97,9 +97,7 @@ RSpec.describe(Jekyll::Commands::Post) do
     end
 
     before(:each) do
-      File.open(config, "w") do |f|
-        f.write(config_data)
-      end
+      File.write(config, config_data)
     end
 
     after(:each) do
@@ -128,8 +126,8 @@ RSpec.describe(Jekyll::Commands::Post) do
       it "creates post with the specified config" do
         capture_stdout { described_class.process(args) }
         post = File.read(path)
-        expect(post).to match(%r!description: my description!)
-        expect(post).to match(%r!category: !)
+        expect(post).to match(%r{description: my description})
+        expect(post).to match(%r{category: })
       end
 
       context "env variable EDITOR is set up" do

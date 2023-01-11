@@ -16,7 +16,7 @@ module Jekyll
   module Compose
     class FileEditor
       class << self
-        attr_reader  :compose_config
+        attr_reader :compose_config
         alias_method :jekyll_compose_config, :compose_config
 
         def bootstrap(config)

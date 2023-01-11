@@ -17,7 +17,7 @@ module Jekyll
       def self.options
         [
           ["config", "--config CONFIG_FILE[,CONFIG_FILE2,...]", Array, "Custom configuration file"],
-          ["force", "-f", "--force", "Overwrite a draft if it already exists"],
+          ["force", "-f", "--force", "Overwrite a draft if it already exists"]
         ]
       end
 
@@ -58,7 +58,7 @@ module Jekyll
       end
 
       def front_matter(data)
-        data.reject { |key, _value| key == "date" }
+        data.except("date")
       end
     end
 

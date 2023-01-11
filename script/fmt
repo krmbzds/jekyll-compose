@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-echo "Rubocop $(bundle exec rubocop --version)"
-bundle exec rubocop -D -E $@
+echo "Standardrb $(bundle exec standardrb --version)"
+bundle exec standardrb --fix "$@"
 success=$?
 if ((success != 0)); then
    echo -e "\nTry running \`script/fmt -a\` to automatically fix errors"

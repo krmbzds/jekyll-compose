@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "./spec_helper"
+
 RSpec.describe(Jekyll::Commands::Page) do
   let(:name) { "A test page" }
   let(:args) { [name] }

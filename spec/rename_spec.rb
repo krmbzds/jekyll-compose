@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "./spec_helper"
+
 RSpec.describe(Jekyll::Commands::Rename) do
   let(:datestamp) { Time.now.strftime(Jekyll::Compose::DEFAULT_DATESTAMP_FORMAT) }
   let(:timestamp) { Time.now.strftime(Jekyll::Compose::DEFAULT_TIMESTAMP_FORMAT) }

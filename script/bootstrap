@@ -1,2 +1,3 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
 bundle install --jobs=8 --retry=3

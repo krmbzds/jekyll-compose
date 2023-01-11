@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Tag and push a release.
 
 set -e
